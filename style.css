@@ -1,69 +1,87 @@
 body {
-    font-family: Georgia, serif;
-    background-color: #111;
-    color: #f0f0f0;
+    font-family: 'Roboto', sans-serif;
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    background-color: #000; /* Black background for secret agent theme */
+    color: #fff; /* White text for contrast */
   }
-  
-  h1 {
-    color: gold;
-    text-shadow: 1px 1px 4px black;
-    font-size: 2.5rem;
-    margin-bottom: 10px;
+  header {
+    background-color: #111; /* Darker header */
+    color: #ffd700; /* Gold text for elegance */
+    padding: 1rem 0;
+    text-align: center;
   }
-  
-  a.category {
-    color: #00bcd4;
+  header h1 {
+    margin: 0;
+  }
+  nav {
+    text-align: center;
+    margin: 1rem 0;
+  }
+  .category {
+    display: inline-block;
+    margin: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #ffd700; /* Gold buttons */
+    color: #000; /* Black text for contrast */
     text-decoration: none;
-    margin-right: 20px;
-    font-size: 1.1rem;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
   }
-  
-  a.category:hover {
-    text-decoration: underline;
-    color: gold;
+  .category:hover {
+    background-color: #ff4500; /* Red hover effect */
+    transform: scale(1.1); /* Slight zoom on hover */
   }
-  
-  #filmtitle {
-    margin-top: 30px;
-    font-size: 1.8rem;
-    color: #ffde59;
+  main {
+    padding: 1rem;
   }
-  
   #output {
-    margin-top: 20px;
+    margin-top: 1rem;
   }
-  
   .film {
-    border: 1px solid #333;
-    background-color: #1a1a1a;
-    padding: 15px;
-    margin: 15px 0;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(255, 215, 0, 0.1);
-    transition: transform 0.3s;
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space between text and image */
+    align-items: flex-start; /* Align items at the top */
+    border: 1px solid #444; /* Subtle border for cards */
+    border-radius: 5px;
+    padding: 1rem;
+    margin: 1rem 0;
+    background-color: #222; /* Dark card background */
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1); /* Subtle white shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
-  
+
   .film:hover {
-    transform: scale(1.02);
-    box-shadow: 0 0 15px rgba(255, 215, 0, 0.25);
+    transform: translateY(-10px); /* Lift effect on hover */
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.3); /* Brighter shadow on hover */
   }
-  
+
+  .film img {
+    flex-shrink: 0; /* Prevent the image from shrinking */
+    width: 200px; /* Larger image width */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 5px;
+    margin-left: 1rem; /* Add space between text and image */
+  }
+
+  .film-content {
+    flex: 1; /* Allow text content to take up remaining space */
+    margin-right: 1rem; /* Add space between text and the image */
+  }
+
   .film h2 {
-    margin: 0 0 10px;
-    color: gold;
-    font-size: 1.5rem;
+    color: #ffd700; /* Gold for film titles */
   }
-  
+
   .film p {
-    margin: 5px 0;
-    line-height: 1.4;
+    color: #ccc; /* Light gray for details */
   }
-  
+
   .pic {
-    margin-top: 10px;
-    border-radius: 4px;
-    border: 2px solid #555;
-  }
-  
+    width: 200px;
+    height: auto;
+    border-radius: 5px;
+    margin-left: 1rem;
+    flex-shrink: 0;
+  }  
