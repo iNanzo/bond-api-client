@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link href="style.css" rel="stylesheet" type="text/css" />
   <meta charset="UTF-8">
   <title>Bond Web Service</title>
   <style>
     body { font-family: georgia; }
-
   </style>
 </head>
 <body>
@@ -18,28 +18,61 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      document.querySelectorAll(".category").forEach(link => {
+      document.querySelectorAll(".category").forEach(function (link) {
         link.addEventListener("click", function (e) {
           e.preventDefault();
-          const cat = this.getAttribute("href");
+          var cat = this.getAttribute("href");
           loadAJAX(cat);
         });
       });
     });
 
     var url = "https://newmanix.com/classes/it122/bond-web-service/";
-    async function loadAJAX(cat) {
-      const endpoint = url + "api.php?cat=" + cat;
-      try {
-        const response = await fetch(endpoint, { method: "GET", mode: "cors" });
-        if (!response.ok) throw new Error("HTTP error " + response.status);
-        const data = await response.json();
-        console.log(data);
-      } catch (err) {
-        document.getElementById("output").innerText = "Error loading data: " + err;
-      }
+
+    function loadAJAX(cat) {
+      document.getElementById("output").innerHTML = "";
+
+      var endpoint = url + "api.php?cat=" + cat;
+
+      fetch(endpoint, {
+        method: "GET",
+        mode: "cors"
+      })
+        .then(function (response) {
+          if (!response.ok) {
+            throw new Error("HTTP error " + response.status);
+          }
+          return response.json();
+        })
+        .then(function (data) {
+          document.getElementById("filmtitle").innerHTML = data.title;
+
+          data.films.forEach(function (film) {
+            var filmHTML = bondTemplate(film);
+            document.getElementById("output").innerHTML += filmHTML;
+          });
+        })
+        .catch(function (err) {
+          document.getElementById("output").innerText = "Error loading data: " + err;
+        });
     }
 
+    function bondTemplate(film) {
+      return `
+        <div class="film">
+          <h2>${film.Title}</h2>
+          <p>Release Year - ${film.Year}</p>
+          <p>James Bond - ${film.Bond}</p>
+          <p>Budget - ${film.Budget}</p>
+          <p>Box Office - ${film.BoxOffice}</p>
+          <p>Director - ${film.Director}</p>
+          <p>Producers - ${film.Producers}</p>
+          <p>Writers - ${film.Writers}</p>
+          <p>Composer - ${film.Composer}</p>
+          <img class="pic" src="${url}/images/${film.Image}" alt="${film.Title} poster" width="100" height="100" />
+        </div>
+      `;
+}
   </script>
 </body>
 </html>
